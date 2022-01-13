@@ -1,4 +1,5 @@
 import React from 'react';
+import Member from './components/Member';
 
 class App extends React.Component {
 
@@ -26,7 +27,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <p><h1>My Project {this.state.hour}</h1></p>
+        <Member name="Owner" />
       </div>
     );
   }
