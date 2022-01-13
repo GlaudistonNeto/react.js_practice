@@ -1,50 +1,49 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Team extends React.Component {
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'G-Neto',
+      counter: 0,
+    };
+
+    this.increase = this.increase.bind(this);
+    this.decrease = this.decrease.bind(this);
+  };
+
+  increase() {
+    let state = this.state;
+    state.counter++;
+    state.name = 'jaunzinho';
+    this.setState(state);
+  }
+
+  decrease() {
+    let state = this.state;
+    if (state.counter === 0) {
+      alert("You can't keep decreasing anymore, sorry...")
+      return;
+    } else {
+      state.counter--;
+      state.name = 'zezim';
+      this.setState(state);
+    }
+  }
+
   render() {
     return (
       <div>
-        <About 
-          name={this.props.name}
-          office={this.props.office}
-          age={this.props.age}
-        />
-        <hr />
+      <h1>This is a number from the counter</h1>
+        {this.state.name}
+        <h3>
+          <button onClick={this.decrease}>-</button>
+            {this.state.counter}
+          <button onClick={this.increase}>+</button>
+        </h3>
       </div>
     );
   }
 }
-
-class About extends React.Component {
-  render() {
-    return (
-      <div>
-        <h2>Hello, I'm {this.props.name} your full-stack developer</h2>
-        <h3>My full time Office is: {this.props.office}</h3>
-        <h4>I'm {this.props.age} years old</h4>
-        <Social />
-      </div>
-    );
-  }
-}
-
-const Social = () => {
-  return (
-    <div>
-      <p><a href="http://facebook.com">Facebook</a></p>
-      <a href="http://linkedin.com">Linkedin</a>
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <div>
-      <h1>Get to know our team:</h1>
-      <Team name="G-Neto" office ="Programmer" age="36" />
-      <Team name="Kabongo" office ="Programmer" age="21" />
-    </div>
-  );
-};
 
 export default App;
