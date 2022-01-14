@@ -1,4 +1,5 @@
 import React from 'react';
+import Feed from './components/Feed';
 // import Member from './components/Member';
 
 class App extends React.Component {
@@ -6,20 +7,24 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: false
+      feed: [
+        {id: 1, username: 'G-neto', likes: 10, comments: 15},
+        {id: 2, username: 'Putu', likes: 100, comments: 155},
+        {id: 3, username: 'Kabongo', likes: 12, comments: 18},
+      ]
     }
 
-    this.out = this.out.bind(this);
-    this.enter = this.enter.bind(this);
+    // this.out = this.out.bind(this);
+    // this.enter = this.enter.bind(this);
   }
 
-  out() {
-    this.setState({ status: false });
-  }
+  // out() {
+  //   this.setState({ status: false });
+  // }
 
-  enter() {
-    this.setState({ status: true });
-  }
+  // enter() {
+  //   this.setState({ status: true });
+  // }
 
   // enter() {
   //   this.setState({ status: true });
@@ -42,21 +47,18 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {
-          this.state.status ?
-          <div>
-            <h1>You took the Red pill WELCOME TO THE MATRIX</h1>
-            <button onClick={this.out}>Take the Blue pill</button>
-          </div>
-        :
-        <div>
-          <h2>You took the Blue pill GO BACK TO YOUR OLD LIFE!</h2>
-          <button onClick={this.enter}>Take the Red pill</button>
-        </div>
-        }
+        {this.state.feed.map((item) => {
+          return (
+            <Feed
+              id={item.id}
+              username={item.username}
+              likes={item.likes}
+              comments={item.comments}
+            />
+          );
+        })}
       </div>
     );
   }
-}
-
+};
 export default App;
